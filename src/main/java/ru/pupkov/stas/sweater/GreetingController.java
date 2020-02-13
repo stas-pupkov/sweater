@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.pupkov.stas.sweater.domain.Message;
 import ru.pupkov.stas.sweater.domain.repos.MessageRepo;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -24,14 +25,14 @@ public class GreetingController {
         return "greeting";
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String main(Map<String, Object> model) {
         Iterable<Message> messages = messageRepo.findAll();
         model.put("messages", messages);
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("/")
     public String add(@RequestParam String text,
                       @RequestParam String tag,
                       Map<String, Object> model) {
@@ -39,6 +40,19 @@ public class GreetingController {
         messageRepo.save(message);
 
         Iterable<Message> messages = messageRepo.findAll();
+        model.put("messages", messages);
+        return "main";
+    }
+
+    @PostMapping("/filter")
+    public String filter(@RequestParam String filter,
+                         Map<String, Object> model) {
+        Iterable<Message> messages;
+        if (filter != null && !filter.isEmpty()) {
+            messages = messageRepo.findByTag(filter);
+        } else {
+            messages = messageRepo.findAll();
+        }
         model.put("messages", messages);
         return "main";
     }
