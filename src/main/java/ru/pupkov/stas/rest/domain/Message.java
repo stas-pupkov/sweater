@@ -1,4 +1,4 @@
-package ru.pupkov.stas.sweater.domain;
+package ru.pupkov.stas.rest.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +10,8 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
+
     private String text;
     private String tag;
 
@@ -22,7 +23,7 @@ public class Message {
         this.tag = tag;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -34,7 +35,7 @@ public class Message {
         return tag;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
