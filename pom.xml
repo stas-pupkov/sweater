@@ -44,16 +44,12 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jdbc</artifactId>
-     </dependency>
+    </dependency>
      <!-- DataBase support -->
 
+     <!-- Kotlin -->
      <dependency>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-stdlib-jdk8</artifactId>
@@ -65,32 +61,37 @@
         <version>${kotlin.version}</version>
         <scope>test</scope>
      </dependency>
+     <!-- Kotlin -->
 
       <!-- Testing java Rest -->
       <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-test</artifactId>
           <scope>test</scope>
-          <version>2.1.6.RELEASE</version>
-      </dependency>
-      <dependency>
-          <groupId>com.h2database</groupId>
-          <artifactId>h2</artifactId>
-          <scope>test</scope>
-          <version>1.4.194</version>
+          <exclusions>
+              <exclusion>
+                  <groupId>org.junit.vintage</groupId>
+                  <artifactId>junit-vintage-engine</artifactId>
+              </exclusion>
+          </exclusions>
       </dependency>
       <dependency>
           <groupId>org.junit.jupiter</groupId>
-          <artifactId>junit-jupiter</artifactId>
-          <version>RELEASE</version>
+          <artifactId>junit-jupiter-engine</artifactId>
+          <version>${junit-jupiter.version}</version>
           <scope>test</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-devtools</artifactId>
+          <optional>true</optional>
       </dependency>
       <!-- Testing java Rest -->
 
   </dependencies>
 
   <build>
-      <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
       <plugins>
           <plugin>
               <groupId>org.springframework.boot</groupId>
@@ -98,23 +99,8 @@
           </plugin>
           <plugin>
               <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-compiler-plugin</artifactId>
-              <executions>
-                  <execution>
-                      <id>compile</id>
-                      <phase>compile</phase>
-                      <goals>
-                          <goal>compile</goal>
-                      </goals>
-                  </execution>
-                  <execution>
-                      <id>testCompile</id>
-                      <phase>test-compile</phase>
-                      <goals>
-                          <goal>testCompile</goal>
-                      </goals>
-                  </execution>
-              </executions>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>2.22.0</version>
           </plugin>
       </plugins>
   </build>
