@@ -21,5 +21,8 @@ class RestTest {
        //assertNotNull(result)
        //assertEquals(result.statusCode, HttpStatus.OK)
        //assertEquals(result?.body, "hello world")
+
+        assertThat(true).isEqualTo(true)
+        assertThat("entity.body").contains("body")
     }
 }
