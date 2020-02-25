@@ -1,9 +1,9 @@
-package ru.pupkov.stas.rest;
+package ru.pupkov.stas.rest.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.pupkov.stas.rest.domain.Message;
-import ru.pupkov.stas.rest.domain.repos.MessageRepo;
+import ru.pupkov.stas.rest.repository.MessageRepo;
 
 @RestController
 @RequestMapping("/messages")
@@ -12,15 +12,14 @@ public class MessageController {
     @Autowired
     private MessageRepo messageRepo;
 
-    @GetMapping
+    @GetMapping("")
     public Iterable<Message> getMessages() {
         return messageRepo.findAll();
     }
 
     @GetMapping(path = "/{id}")
     public Iterable<Message> getMessage(@PathVariable("id") int id) {
-        Iterable<Message> message = messageRepo.findById(id);
-        return message;
+        return messageRepo.findById(id);
     }
 
     @PostMapping("/add")
