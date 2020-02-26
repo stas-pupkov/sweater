@@ -11,11 +11,10 @@ import org.springframework.test.context.junit4.SpringRunner
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
-@SpringBootTest
 class RestTest {
 
     @Test
-    fun whenCalled_shouldReturnHello() {
+    fun `when Called should Return Hello`() {
         println("run test")
        //val result = testRestTemplate.getForEntity("/hello", String::class.java)
        //assertNotNull(result)
