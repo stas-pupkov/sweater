@@ -1,4 +1,4 @@
-package ru.pupkov.stas.sweater.domain.repos;
+package ru.pupkov.stas.sweater.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import ru.pupkov.stas.sweater.domain.Message;
